@@ -9,17 +9,18 @@ int main(){
 
     //insira os dados da carta 01
 
-    printf("Digite uma letra de A a H para simbolizar o primeiro estado. \n ");
+    printf("Digite uma letra de A a H para simbolizar o primeiro estado. \n");
     printf("Estado:\n");
     scanf("%c, &estado1\n");
 
     printf("Digite um núnmero entre 01 e 04 para determinar o número da carta. \n");
     printf("Numero: \n");
-    scanf("%s, codigo1\n");
+    scanf("%2s, codigo1\n");
 
     printf("Digite o nome da primeira cidade.\n");
     printf("Nome da cidade:\n");
-    scanf("%s, cidade1\n");
+    getchar();
+    fgets(cidade1, sizeof(cidade1), stdin);
 
     printf("Informe o número habitantes da cidade.\n");
     printf("População:\n");
@@ -36,6 +37,12 @@ int main(){
     printf("Informe quantos pontos turisticos tem a cidade.\n");
     printf("Pontos turisticos:\n");
     scanf("%d, &pontos_turisticos1\n");
+
+    // informe os dados da carta 02
+
+    printf("Digite uma letra de A a H para simbolizar o sgundo estado.\n");
+    printf("Estado: \n");
+    scanf("%c, &estado2\n");
 
    
 

@@ -4,21 +4,23 @@ int main() {
     // Definição das variáveis
     char estado1, estado2, codigo1[3], codigo2[3], cidade1[75], cidade2[75];
     float area1, area2, pib1, pib2, densidade1, densidade2, pib_per_capita1, pib_per_capita2;
-    int populacao1, populacao2, pontos_turisticos1, pontos_turisticos2;
+    float super_poder1, super_poder2;
+    unsigned long int populacao1, populacao2;
+    int pontos_turisticos1, pontos_turisticos2;
 
     // Inserção dos dados da Carta 1
     printf("Digite uma letra de A a H para simbolizar o primeiro estado:\n");
-    scanf(" %c", &estado1); // Adicionado espaço antes do %c para evitar problemas com buffer
+    scanf(" %c", &estado1);
 
     printf("Digite um número entre 01 e 04 para determinar o número da carta:\n");
     scanf("%2s", codigo1);
 
     printf("Digite o nome da primeira cidade:\n");
-    getchar();  // Limpar buffer
+    getchar();
     fgets(cidade1, sizeof(cidade1), stdin);
 
     printf("Informe o número de habitantes da cidade:\n");
-    scanf("%d", &populacao1);
+    scanf("%lu", &populacao1);
 
     printf("Informe a área territorial em km² da cidade:\n");
     scanf("%f", &area1);
@@ -37,11 +39,11 @@ int main() {
     scanf("%2s", codigo2);
 
     printf("Digite o nome da segunda cidade:\n");
-    getchar();  // Limpar buffer
+    getchar();
     fgets(cidade2, sizeof(cidade2), stdin);
 
     printf("Informe o número de habitantes da cidade:\n");
-    scanf("%d", &populacao2);
+    scanf("%lu", &populacao2);
 
     printf("Informe a área territorial em km² da cidade:\n");
     scanf("%f", &area2);
@@ -58,32 +60,24 @@ int main() {
     pib_per_capita1 = pib1 / populacao1;
     pib_per_capita2 = pib2 / populacao2;
 
+    // Cálculo do Super Poder
+    super_poder1 = populacao1 + area1 + pib1 + pontos_turisticos1 + pib_per_capita1 + (1.0 / densidade1);
+    super_poder2 = populacao2 + area2 + pib2 + pontos_turisticos2 + pib_per_capita2 + (1.0 / densidade2);
 
-    // Exibição dos dados da Carta 1
-    printf("\n--- Dados da Carta 1 ---\n");
-    printf("Estado: %c\n", estado1);
-    printf("Código: %c%s\n", estado1, codigo1);
-    printf("Nome da Cidade: %s", cidade1);
-    printf("População: %d\n", populacao1);
-    printf("Área: %.2f km²\n", area1);
-    printf("PIB: %.2f bilhões de reais\n", pib1);
-    printf("Pontos Turísticos: %d\n", pontos_turisticos1);
-    printf("Densidade Populaciona: %.2f habitantes/km²\n", densidade1);
-    printf("Pib Per Capita: %.2f reais\n", pib_per_capita1);
+    // Exibição das Comparações
+    printf("\n--- Comparação de Cartas ---\n");
+    printf("População: Carta %d venceu (%d)\n", populacao1 > populacao2 ? 1 : 2, populacao1 > populacao2);
+    printf("Área: Carta %d venceu (%d)\n", area1 > area2 ? 1 : 2, area1 > area2);
+    printf("PIB: Carta %d venceu (%d)\n", pib1 > pib2 ? 1 : 2, pib1 > pib2);
+    printf("Pontos Turísticos: Carta %d venceu (%d)\n", pontos_turisticos1 > pontos_turisticos2 ? 1 : 2, pontos_turisticos1 > pontos_turisticos2);
+    printf("Densidade Populacional: Carta %d venceu (%d)\n", densidade1 < densidade2 ? 1 : 2, densidade1 < densidade2);
+    printf("PIB per Capita: Carta %d venceu (%d)\n", pib_per_capita1 > pib_per_capita2 ? 1 : 2, pib_per_capita1 > pib_per_capita2);
+    printf("Super Poder: Carta %d venceu (%d)\n", super_poder1 > super_poder2 ? 1 : 2, super_poder1 > super_poder2);
 
-
-    // Exibição dos dados da Carta 2
-    printf("\n--- Dados da Carta 2 ---\n");
-    printf("Estado: %c\n", estado2);
-    printf("Código: %c%s\n", estado2, codigo2);
-    printf("Nome da Cidade: %s", cidade2);
-    printf("População: %d\n", populacao2);
-    printf("Área: %.2f km²\n", area2);
-    printf("PIB: %.2f bilhões de reais\n", pib2);
-    printf("Pontos Turísticos: %d\n", pontos_turisticos2);
-    printf("Densidade Populaciona: %.2f habitantes/km²\n", densidade2);
-    printf("Pib Per Capita: %.2f reais\n", pib_per_capita2);
-
-
+    // Exibição dos Resultados Finais
+    printf("\n--- Resultados Finais ---\n");
+    printf("Carta 1 - Super Poder: %.2f\n", super_poder1);
+    printf("Carta 2 - Super Poder: %.2f\n", super_poder2);
+    
     return 0;
 }
